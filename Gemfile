@@ -47,7 +47,7 @@ gem 'twilio-ruby', '~> 5.0.0'
 gem 'pry-rails'
 gem 'pry'
 
-
+gem 'pg', '~> 0.21'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -89,4 +89,4 @@ gem 'js_assets'
 group :production do
   gem 'puma', '~> 3.7'
 end
-gem 'pg'
+
