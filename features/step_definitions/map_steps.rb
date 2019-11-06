@@ -1,4 +1,4 @@
-Given(/^I am on the user page$/) do |place|
+Given(/^I am on user page$/) do |place|
   visit('/users/#{place}')
 end
 Then(/^I should see a map$/) do

@@ -13,7 +13,7 @@ When /^I should not see Tire Pressure$/ do
     expect(page).to have_selector('i#tire-pressure', visible: false)
 end
 
-Then /^they cleck continue$/ do
+Then /^they click continue$/ do
   find(:css, 'a.btn.btn-primary').click
 end
 
