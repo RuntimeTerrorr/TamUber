@@ -13,9 +13,10 @@ require 'rails_helper'
 RSpec.describe UsersHelper, type: :helper do
     context 'validation tests' do
         it 'gravatar present' do
-            user = User.new(firstname: 'First', lastname: 'Last', email: 'test@123.com', password: '123456').save
+            user = User.new(firstname: 'First', lastname: 'Last', email: 'test@123.com', password: '123456')
+            user.save
             grav = gravatar_for(user, options = { size: 80 })
-            expect(grav).to eq(true)
+            expect(grav).to include('First') and include('80')
         end
     end
 end

@@ -65,7 +65,7 @@ Scenario: login with valid credentials
   Then they cleck continue
   Then I should see "Dashboard"
   And I should see "Weather Data"
-  And I should see "Emergency Call"
+  # And I should see "Emergency Call"
   And I should see "Ride Information"
   
   Then I follow "Help"

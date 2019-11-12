@@ -14,7 +14,7 @@ When /^I should not see Tire Pressure$/ do
 end
 
 Then /^they cleck continue$/ do
-  find(:css, 'a.btn.btn-primary.disable').click
+  find(:css, 'a.btn.btn-primary').click
 end
 
 
