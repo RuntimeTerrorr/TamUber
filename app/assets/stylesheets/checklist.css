@@ -22,6 +22,7 @@ ul {
 
 
 .al {
+	padding-left: 4px;
 	background: white;
 	height: 40px;
 	line-height: 40px;
@@ -33,22 +34,22 @@ ul {
 }
 
 
-span {
-	background: white;
-	height: 40px;
-	margin-right: 20px;
-	color: green;
-	width: 0;
-	text-align: center;
-	transition: 0.2s;
-	display: inline-block;
-	opacity:  0;
-}
+/*span {*/
+/*	background: white;*/
+/*	height: 40px;*/
+/*	margin-right: 20px;*/
+/*	color: green;*/
+/*	width: 0;*/
+/*	text-align: center;*/
+/*	transition: 0.2s;*/
+/*	display: inline-block;*/
+/*	opacity:  0;*/
+/*}*/
 
-li:hover span {
-	width: 40px;
-	opacity: 1.0;
-}
+/*li:hover span {*/
+/*	width: 40px;*/
+/*	opacity: 1.0;*/
+/*}*/
 
 input {
 	font-size: 18px;
@@ -92,4 +93,11 @@ input:focus{
 .completed {
 	color: gray;
 	text-decoration: line-through;
+}
+
+label, input[type="checkbox"]
+{
+	width: auto;
+	display: inline-block;
+	vertical-align: middle;
 }
