@@ -14,30 +14,44 @@
 <body>
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <ul  id="contain">
-			<li class="al"><span><i class="fas fa-check" id = "tire-pressure"></i></span> Tire Pressure</li>
-			<li class="al"><span><i class="fas fa-check" id = "cooling liquid"></i></span> Cooling liquid</li>
-			<li class="al"><span><i class="fas fa-check" id = "engine light"></i></span> Engine Light</li>
-			<li class="al"><span><i class="fas fa-check" id = "light"></i></span> Light</li>
-		</ul>
-    <%= link_to "Continue",current_user , class: "btn btn-primary", id: "dis"%>
+        <ul id="contain">
+            <li class="al">
+                <input id="tire_pressure" type="checkbox" value="OK" />
+                <label for="tire_pressure">Tire Pressure</label>
+            </li>
+            <li class="al">
+                <input id="cooling_liquid" type="checkbox" value="OK" />
+                <label for="cooling_liquid">Cooling Liquid</label>
+            </li>
+            <li class="al">
+                <input id="engine_light" type="checkbox" value="OK" />
+                <label for="engine_light">Engine Light</label>
+            </li>
+            <li class="al">
+                <input id="lights" type="checkbox" value="OK" />
+                <label for="lights">Lights</label>
+            </li>
+        </ul>
+    <%= link_to "Continue",current_user , class: "btn btn-primary disabled", id: "dis"%>
   </div>
 </div>
 </body>
 
 <script>
     var elements = 4;
-
-    $("span").click(function(event){
-    	$(this).parent().fadeOut(500, function(){
-    		$(this).remove();
-    	});
-    	elements = elements-1;
-    	if(elements === 0){
-    	    var a = document.getElementById("dis");
-    	    a.classList.remove("disable");
-    	}
-    	event.stopPropagation();
+    $(document).ready(function() {
+        $('#dis').click(function(event){
+            if($('input[type=checkbox]:checked').length !==  elements) {
+                event.preventDefault(); // Prevent link from following its href
+            }
+        });
     });
-    
+    $("#contain").click(function(e) {
+        if( $('input[type=checkbox]:checked').length ===  elements ){
+            $('#dis').removeClass('disabled');
+        }
+        else {
+            $('#dis').addClass('disabled');
+        }
+    });
 </script>

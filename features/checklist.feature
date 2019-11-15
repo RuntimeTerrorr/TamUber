@@ -1,9 +1,9 @@
 # Feature: checklist
 
+#   @javascript
 #   Scenario: check everything in checklist
-#     Given a user visits the checklist page
-#     When they check everything of the checklist
-#     Then I should not see Tire Pressure
-#     Then they cleck continue
+#     Given I visit the checklist page
+#     When I check everything off the checklist
+#     Then I click continue
 #     Then I follow "Continue"
-#     Then I should be on profile page
+#     Then I should see "Dashboard"

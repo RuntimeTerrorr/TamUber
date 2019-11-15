@@ -61,8 +61,8 @@ Scenario: login with valid credentials
   And I fill in "Password" with "123456"
   And I press "Log in"
   Then I should see the checklist page
-  When they check everything of the checklist
-  Then they cleck continue
+  When I check everything off the checklist
+  Then I click continue
   Then I should see "Dashboard"
   And I should see "Weather Data"
   # And I should see "Emergency Call"
