@@ -5,10 +5,10 @@ require 'net/http'
 
 
 class UsersController < ApplicationController
-'''
+
   def show
     @user = User.find(params[:id])
-    
+    '''
     url = URI.parse('http://47.218.218.78:8080/car_info.json')
 
     begin 
@@ -30,9 +30,9 @@ class UsersController < ApplicationController
       	@diff_time = "Server is Down!"
         @vehicle_stats = {"tire_pressure"=> "Server is Down!", "battery_level"=>"Server is Down!", "lidar_status"=> "Server is Down!", "time"=>"Server is Down!"}
     end 
-    return @user,@vehicle_stats,@diff_time
+    '''
+    return @user
   end
-  '''
 
   def new
     @user = User.new
