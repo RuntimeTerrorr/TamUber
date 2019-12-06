@@ -5,7 +5,7 @@ require 'net/http'
 
 
 class UsersController < ApplicationController
-
+'''
   def show
     @user = User.find(params[:id])
     
@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     end 
     return @user,@vehicle_stats,@diff_time
   end
+  '''
 
   def new
     @user = User.new

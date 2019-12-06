@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'password_resets/new'
   get 'password_resets/edit'
   root   'static_pages#home'
-  
+  post '/dashboard', to: 'dashboard#get_stats'
   get 'password_resets/new'
   get '/edit',    to: 'users#edit'
   get    '/help',    to: 'static_pages#help'
