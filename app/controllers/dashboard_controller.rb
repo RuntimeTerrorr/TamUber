@@ -1,5 +1,8 @@
 class DashboardController < ApplicationController
-  def show_stats
-    # @vehicle_stats =  VehicleStatus.first()
+  
+  def get_stats 
+    @vehicle_stats = VehicleStatus.receive_stats
+    return @vehicle_stats
   end
+
 end
