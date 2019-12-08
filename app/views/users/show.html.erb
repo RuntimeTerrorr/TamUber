@@ -298,29 +298,6 @@
     }(document,'script','weatherwidget-io-js');
   </script>
   
-  <script>
-    jQuery(document).ready(function(){
-      function update_values(){
-        $.ajax({
-          type: "GET",
-          url: "/dashboard",
-          success: function (result) {
-            console.log(result);
-            $('#time_diff').html(result['time']); 
-            $('#tire_pressure').html( result['tire_pressure']);
-            $('#battery_level').html( result['battery_level']);
-            $('#lidar_status').html( result['lidar_status']);
-            $('#occupancy').html( result['occupancy']);
-          },
-          error: function(e) {
-            console.log(e);
-          }
-         });
-         setTimeout(update_values, 6000);
-        };
-      });
-   </script>
-  
   
   <script>
     // api key for darksky
@@ -329,6 +306,7 @@
     var long = "-96.337648";
     jQuery(document).ready(function(){
       weatherFunction();  // when the page has loaded, run weatherFunction
+      update_values();
       // $('#weather_results').show();
     });
   
@@ -341,7 +319,6 @@
     var apiLinkDS = url1+apikey+"/"+lat+","+long;
     
     $.ajax({
-      // url: proxy + apiLinkDS,
       url: proxy + apiLinkDS,
       headers: {
           "Access-Control-Allow-Origin":"*"
@@ -361,6 +338,25 @@
     });
     setTimeout(weatherFunction, 3600000);
   };
+
+  function update_values(){
+    $.ajax({
+      type: "GET",
+      url: "/dashboard",
+      success: function (result) {
+        console.log(result);
+        $('#time_diff').html(result['time']); 
+        $('#tire_pressure').html( result['tire_pressure']);
+        $('#battery_level').html( result['battery_level']);
+        $('#lidar_status').html( result['lidar_status']);
+        $('#occupancy').html( result['occupancy']);
+      },
+      error: function(e) {
+        console.log(e);
+      }
+     });
+     setTimeout(update_values, 6000);
+    };
 
   </script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
