@@ -2,23 +2,13 @@ class DashboardController < ApplicationController
   
   def post_stats
     search_id = params[:vehicle_id]
-    params[:vehicle] = {
-      :vehicle_id => params[:vehicle_id],
-      :battery_level => params[:battery],
-      :tire_pressure => params[:tire_pressure],
-      :occupancy => params[:occupancy],
-      :latitude => params[:gps][:lat],
-      :longitude => params[:gps][:lon],
-      :heading => params[:gps][:heading]
-    }
-    puts params
     if VehicleStatus.exists?(vehicle_id: search_id)
       @vehicle = VehicleStatus.find_by(vehicle_id: search_id)
-      @vehicle.update(params[:vehicle])
+      @vehicle.update_stats(params[:vehicle])
       render status: 200
     else
       @vehicle = VehicleStatus.new(vehicle_status_params)
-      @vehicle.update(params[:vehicle])
+      @vehicle.update_stats(params[:vehicle])
       render status: 201
     end
   end
@@ -49,6 +39,7 @@ class DashboardController < ApplicationController
   private
 
     def vehicle_status_params
-      params.require(:vehicle).permit(:vehicle_id, :battery_level, :tire_pressure, :occupancy, :latitude, :longitude, :heading)
+      params.require(:vehicle).permit(:vehicle_id, :battery, :tire_pressure, :occupancy, :gps)
+      params.require(:vehicle).permit(gps: [:lat, :lon, :heading])
     end
 end
