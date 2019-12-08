@@ -2,8 +2,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # vehicle = VehicleStatus.find(session[:vehicle_id])
-    vehicle = nil
+    vehicle = VehicleStatus.find_by(vehicle_id: session[:current_vehicle_id])
+    # vehicle = nil
     if vehicle
       @vehicle_stats = {
         "time" => vehicle.updated_at,
