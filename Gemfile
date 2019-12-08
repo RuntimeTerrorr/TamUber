@@ -47,7 +47,7 @@ gem 'twilio-ruby', '~> 5.0.0'
 gem 'pry-rails'
 gem 'pry'
 
-gem 'pg', '~> 0.21'
+# gem 'pg', '~> 0.21'
 # gem 'pg'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

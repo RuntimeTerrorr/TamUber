@@ -33,7 +33,7 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: postgresql
+  adapter: sqlite3
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
@@ -41,11 +41,11 @@ default: &default
 
 development:
   <<: *default
-  database: myapp_development
+  database: db/development.sqlite3
 
 test:
   <<: *default
-  database: myapp_test
+  database: db/test.sqlite3
 
 production:
   <<: *default
