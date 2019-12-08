@@ -36,11 +36,4 @@ class DashboardController < ApplicationController
     end
     render json: @vehicle_stats
   end
-  
-  # private
-
-  #   def vehicle_status_params
-  #     params.require(:dashboard).permit(:vehicle_id, :battery, :tire_pressure, :occupancy)
-  #     # params.require(:dashboard).permit(gps: [:lat, :lon, :heading])
-  #   end
 end

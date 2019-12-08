@@ -177,12 +177,39 @@
       <a style="width:100%" class="weatherwidget-io" href="https://forecast7.com/en/30d63n96d33/college-station/" data-label_1="COLLEGE STATION" data-label_2="WEATHER" data-theme="ruby" data-basecolor="#500000" >
         COLLEGE STATION WEATHER</a>    
   </div>
-  
-  
-  
-  
+
   <div id="weather">
-        <h2> Weather Data for College Station </h2>
+    <h2> Weather Data for College Station </h2>
+    <table class="table table-striped">
+      <tr style = "background: white">
+        <th>Temperature(Farenheit)</th>
+        <td id="temperature"></td>
+      </tr>
+      <tr style = "background: white">
+        <th>Humidity</th>
+        <td id="humidity"></td>
+      </tr>
+      <tr style = "background: white">
+        <th>Probability of Rain(%)</th>
+        <td id="rain_prob"></td>
+      </tr>
+      <tr style = "background: white">
+        <th>Intensity of Rain</th>
+        <td id="rain_int"></td>
+      </tr>
+      <tr style = "background: white">
+        <th>Visibility</th>
+        <td id="visibility"></td>
+      </tr>
+      <tr style = "background: white">
+        <th>WindSpeed</th>
+        <td id="windSpeed"></td>
+      </tr>
+      <tr style = "background: white">
+        <th>Summary</th>
+        <td id="summary"></td>
+      </tr>
+    </table>
   </div>
     
     
@@ -298,7 +325,6 @@
     var lat = "30.617930";
     var long = "-96.337648";
     jQuery(document).ready(function(){
-      console.log("Ready!");
       weatherFunction();  // when the page has loaded, run weatherFunction
       // $('#weather_results').show();
     });
@@ -317,15 +343,14 @@
       headers: {
           "Access-Control-Allow-Origin":"*"
       },
-      success: function(data) { console.log(data); 
-      html += '<table class="table table-striped"><tr><th>Temperature(Farenheit)</th><td>' + data.currently.temperature + '</th></td>'
-          + '<tr style = "background: white"><th>Humidity</th><td>' + data.currently.humidity + '</td>'
-          + '<tr><th>Probability of Rain(%)</th><td>' + data.currently.precipProbability * 100 + ' %' + '</td>'
-          + '<tr style = "background: white"><th>Intensity of Rain</th><td>' + data.currently.precipIntensity + '</td>'
-          + '<tr><th>Visibility</th><td>' + data.currently.visibility + '</td>'
-          + '<tr style = "background: white"><th>WindSpeed</th><td>' + data.currently.windSpeed + '</td>'
-          + '<tr><th>Summary</th><td>' + data.daily.summary +'</td></tr></table>';
-      $('#weather').append(html);
+      success: function(data) {
+        $('#temperature').html = data.currently.temperature;
+        $('#humidity').html = data.currently.humidity;
+        $('#rain_prob').html = data.currently.precipProbability * 100;
+        $('#rain_int').html = data.currently.precipIntensity;
+        $('#visibility').html = data.currently.visibility;
+        $('#windSpeed').html = data.currently.windSpeed;
+        $('#summary').html = data.daily.summary;
       }
     });
     setTimeout(weatherFunction, 3600000);
