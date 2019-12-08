@@ -307,7 +307,7 @@
         js.src='https://weatherwidget.io/js/widget.min.js';
         fjs.parentNode.insertBefore(js,fjs);
       }
-      setTimeout(weatherWidget, 1000);
+      setTimeout(weatherWidget.bind(null, document, 'script', 'weatherwidget-io-js'), 1000);
     };
   
   
