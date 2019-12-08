@@ -183,7 +183,6 @@
   
   <div id="weather">
         <h2> Weather Data for College Station </h2>
-        <table id="weather_results"></table>
   </div>
     
     
@@ -287,8 +286,8 @@
            $('#occupancy').html( result['occupancy']);
          }
          });
-         setTimeout(update_values,6000);
-        };;
+         setTimeout(update_values, 6000);
+        };
       });
    </script>
   
@@ -301,71 +300,36 @@
     jQuery(document).ready(function(){
       console.log("Ready!");
       weatherFunction();  // when the page has loaded, run weatherFunction
-      $('#weather_results').show();
+      // $('#weather_results').show();
     });
   
   
   function weatherFunction(){
     // Create a request variable and assign a new XMLHttpRequest object to it.
+    var url1 = "https://api.darksky.net/forecast/";
+    var html = '';
+    var proxy = 'https://cors-anywhere.herokuapp.com/';
+    var apiLinkDS = url1+apikey+"/"+lat+","+long;
     
-// IMPORTANT! UNCOMMENT FOR API TO WORK
-
-    // var html2 = '';
-    // // test data stub
-    // var data = {
-    //   daily: {
-    //       summary: "Rain tomorrow and Monday, with high temperatures falling to 50F"
-        
-    //   },
-    //   currently:{
-    //       temperature: 85,
-    //       visibility: 10,
-    //       windSpeed: 3.78,
-    //       precipIntensity: 0.22,
-    //       precipProbability: 0.45,
-    //       humidity: 0.24
-    //   }
-    // }
-    // IF YOU WANT TO USE API, COMMENT THIS OUT; ELSE uncomment this out
-    // *************************Test Stub*******************
-    
-    // html2 += '<table class="table table-striped"><tr><th>Temperature(Farenheit)</th><td>' + data.currently.temperature + '</th></td></tr>'
-    //     + '<tr><th>Humidity</th><td>' + data.currently.humidity + '</td><tr>'
-    //     + '<tr><th>Probability of Rain(%)</th><td>' + data.currently.precipProbability * 100 + ' %' + '</td></tr>'
-    //     + '<tr><th>Intensity of Rain</th><td>' + data.currently.precipIntensity + '</td></tr>'
-    //     + '<tr><th>Visibility</th><td>' + data.currently.visibility + '</td></tr>'
-    //     + '<tr><th>WindSpeed</th><td>' + data.currently.windSpeed + '</td></tr>'
-    //     + '<tr><th>Summary</th><td>' + data.daily.summary +'</td></tr></table>';
-    // $('#weather_results').append(html2);
-
-    // ******************************************************
-    // IF YOU WANT TO USE API, UNCOMMENT THIS OUT; ELSE comment this out
-    // *************************API*******************
-        var url1 = "https://api.darksky.net/forecast/";
-        var html = '';
-        // var proxy = 'https://cors-anywhere.herokuapp.com/';
-        var apiLinkDS = url1+apikey+"/"+lat+","+long;
-        
-        $.ajax({
-          // url: proxy + apiLinkDS,
-          url: apiLinkDS,
-          headers: {
-              "Access-Control-Allow-Origin":"*"
-          },
-          success: function(data) { console.log(data); 
-          html += '<table class="table table-striped"><tr><th>Temperature(Farenheit)</th><td>' + data.currently.temperature + '</th></td>'
-              + '<tr style = "background: white"><th>Humidity</th><td>' + data.currently.humidity + '</td>'
-              + '<tr><th>Probability of Rain(%)</th><td>' + data.currently.precipProbability * 100 + ' %' + '</td>'
-              + '<tr style = "background: white"><th>Intensity of Rain</th><td>' + data.currently.precipIntensity + '</td>'
-              + '<tr><th>Visibility</th><td>' + data.currently.visibility + '</td>'
-              + '<tr style = "background: white"><th>WindSpeed</th><td>' + data.currently.windSpeed + '</td>'
-              + '<tr><th>Summary</th><td>' + data.daily.summary +'</td></tr></table>';
-
-          $('#weather_results').append(html);
-          }
-        });
-        // ******************************************************
-      };
+    $.ajax({
+      // url: proxy + apiLinkDS,
+      url: proxy + apiLinkDS,
+      headers: {
+          "Access-Control-Allow-Origin":"*"
+      },
+      success: function(data) { console.log(data); 
+      html += '<table class="table table-striped"><tr><th>Temperature(Farenheit)</th><td>' + data.currently.temperature + '</th></td>'
+          + '<tr style = "background: white"><th>Humidity</th><td>' + data.currently.humidity + '</td>'
+          + '<tr><th>Probability of Rain(%)</th><td>' + data.currently.precipProbability * 100 + ' %' + '</td>'
+          + '<tr style = "background: white"><th>Intensity of Rain</th><td>' + data.currently.precipIntensity + '</td>'
+          + '<tr><th>Visibility</th><td>' + data.currently.visibility + '</td>'
+          + '<tr style = "background: white"><th>WindSpeed</th><td>' + data.currently.windSpeed + '</td>'
+          + '<tr><th>Summary</th><td>' + data.daily.summary +'</td></tr></table>';
+      $('#weather').append(html);
+      }
+    });
+    setTimeout(weatherFunction, 3600000);
+  };
 
   </script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
