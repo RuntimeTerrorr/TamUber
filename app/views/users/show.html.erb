@@ -305,7 +305,6 @@
          type: "GET",
          url: "/dashboard",
          success: function (result) {
-           console.log(result);
            $('#time_diff').html(result['time']); 
            $('#tire_pressure').html( result['tire_pressure']);
            $('#battery_level').html( result['battery_level']);
@@ -344,13 +343,13 @@
           "Access-Control-Allow-Origin":"*"
       },
       success: function(data) {
-        $('#temperature').html = data.currently.temperature;
-        $('#humidity').html = data.currently.humidity;
-        $('#rain_prob').html = data.currently.precipProbability * 100;
-        $('#rain_int').html = data.currently.precipIntensity;
-        $('#visibility').html = data.currently.visibility;
-        $('#windSpeed').html = data.currently.windSpeed;
-        $('#summary').html = data.daily.summary;
+        $('#temperature').html( data.currently.temperature );
+        $('#humidity').html( data.currently.humidity );
+        $('#rain_prob').html( data.currently.precipProbability * 100 );
+        $('#rain_int').html( data.currently.precipIntensity );
+        $('#visibility').html( data.currently.visibility );
+        $('#windSpeed').html( data.currently.windSpeed );
+        $('#summary').html(data.daily.summary );
       }
     });
     setTimeout(weatherFunction, 3600000);
