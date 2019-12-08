@@ -6,11 +6,12 @@ class DashboardController < ApplicationController
     if VehicleStatus.exists?(vehicle_id: params[:vehicle_id])
       vehicle = VehicleStatus.find_by(vehicle_id: params[:vehicle_id])
       vehicle.update(params)
+      render status: 200
     else
       vehicle = VehicleStatus.new(vehicle_stats_params)
       vehicle.update(params)
+      render status: 201
     end
-    render status: 200
   end
   
   def get_stats
@@ -39,9 +40,9 @@ class DashboardController < ApplicationController
   private
 
     def vehicle_stats_params
-      params.require(:vehicle_status).permit(
-        :vehicle_id, :latitude, :longitude, :heading,
-        :occupancy, :tire_pressure, :battery_level, :lidar_status
+      params.require(:vehicle_id).permit(
+        :gps, :occupancy,
+        :tire_pressure, :battery_level, :lidar_status
       )
     end
 end
