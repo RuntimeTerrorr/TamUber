@@ -40,7 +40,6 @@ class DashboardController < ApplicationController
   private
 
     def vehicle_status_params
-      params.permit(:vehicle_id, :battery, :tire_pressure, :occupancy, :gps)
-      params.permit(gps: [:lat, :lon, :heading])
+      params.permit(:vehicle_id, :battery_level, :tire_pressure, :occupancy, :latitude, :longitude, :heading)
     end
 end
