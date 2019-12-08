@@ -1,7 +1,8 @@
 class DashboardController < ApplicationController
   
   def post_stats
-    puts params
+    puts request.raw_post
+    puts params[:vehicle_id]
     if VehicleStatus.exists?(vehicle_id: params[:vehicle_id])
       vehicle = VehicleStatus.find_by(vehicle_id: params[:vehicle_id])
       vehicle.update(params)
