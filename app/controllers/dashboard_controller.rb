@@ -5,11 +5,11 @@ class DashboardController < ApplicationController
     params.require(:dashboard).permit(gps: [:lat, :lon, :heading])
     if VehicleStatus.exists?(vehicle_id: params[:dashboard][:vehicle_id])
       @vehicle = VehicleStatus.find_by(vehicle_id: params[:dashboard][:vehicle_id])
-      @vehicle.update_stats(params[:vehicle])
+      @vehicle.update_stats(params[:dashboard])
       render status: 200
     else
       @vehicle = VehicleStatus.new
-      @vehicle.update_stats(params[:vehicle])
+      @vehicle.update_stats(params[:dashboard])
       render status: 201
     end
   end
