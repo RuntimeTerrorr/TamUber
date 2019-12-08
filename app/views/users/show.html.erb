@@ -305,6 +305,7 @@
          type: "GET",
          url: "/dashboard",
          success: function (result) {
+           console.log(result);
            $('#time_diff').html(result['time']); 
            $('#tire_pressure').html( result['tire_pressure']);
            $('#battery_level').html( result['battery_level']);
