@@ -15,9 +15,11 @@ class DashboardController < ApplicationController
   end
   
   def get_stats
-    puts session[:current_vehicle_id]
-    vehicle = VehicleStatus.find_by(vehicle_id: session[:current_vehicle_id])
-    # vehicle = nil
+    if params[:id]
+      vehicle = VehicleStatus.find_by(vehicle_id: params[:id])
+    else
+      vehicle = VehicleStatus.find_by(vehicle_id: session[:current_vehicle_id])
+    end
     if vehicle
       @vehicle_stats = {
         "time" => vehicle.updated_at,
