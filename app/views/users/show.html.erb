@@ -302,16 +302,19 @@
     $(document).ready(function() {
       function update_values(){
         $.ajax({
-         type: "GET",
-         url: "/dashboard",
-         success: function (result) {
-           console.log(result);
-           $('#time_diff').html(result['time']); 
-           $('#tire_pressure').html( result['tire_pressure']);
-           $('#battery_level').html( result['battery_level']);
-           $('#lidar_status').html( result['lidar_status']);
-           $('#occupancy').html( result['occupancy']);
-         }
+          type: "GET",
+          url: "/dashboard",
+          success: function (result) {
+            console.log(result);
+            $('#time_diff').html(result['time']); 
+            $('#tire_pressure').html( result['tire_pressure']);
+            $('#battery_level').html( result['battery_level']);
+            $('#lidar_status').html( result['lidar_status']);
+            $('#occupancy').html( result['occupancy']);
+          },
+          error: function(e) {
+            console.log(e);
+          }
          });
          setTimeout(update_values, 6000);
         };
@@ -351,6 +354,9 @@
         $('#visibility').html( data.currently.visibility );
         $('#windSpeed').html( data.currently.windSpeed );
         $('#summary').html(data.daily.summary );
+      },
+      error: function(e) {
+        console.log(e);
       }
     });
     setTimeout(weatherFunction, 3600000);
