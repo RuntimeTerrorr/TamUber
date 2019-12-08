@@ -11,13 +11,14 @@ class DashboardController < ApplicationController
       :longitude => params[:gps][:lon],
       :heading => params[:gps][:heading]
     }
+    puts params
     if VehicleStatus.exists?(vehicle_id: search_id)
-      vehicle = VehicleStatus.find_by(vehicle_id: search_id)
-      vehicle.update(params[:vehicle])
+      @vehicle = VehicleStatus.find_by(vehicle_id: search_id)
+      @vehicle.update(params[:vehicle])
       render status: 200
     else
-      vehicle = VehicleStatus.new(vehicle_status_params)
-      vehicle.update(params[:vehicle])
+      @vehicle = VehicleStatus.new(vehicle_status_params)
+      @vehicle.update(params[:vehicle])
       render status: 201
     end
   end
