@@ -8,7 +8,7 @@ class DashboardController < ApplicationController
       vehicle.update(params)
       render status: 200
     else
-      vehicle = VehicleStatus.new(vehicle_stats_params)
+      vehicle = VehicleStatus.new(vehicle_status_params)
       vehicle.update(params)
       render status: 201
     end
@@ -39,9 +39,9 @@ class DashboardController < ApplicationController
   
   private
 
-    def vehicle_stats_params
-      params.require(:vehicle_id).permit(
-        :gps, :occupancy,
+    def vehicle_status_params
+      params.require(:vehicle_status).permit(
+        :vehicle_id, :gps, :occupancy,
         :tire_pressure, :battery_level, :lidar_status
       )
     end
