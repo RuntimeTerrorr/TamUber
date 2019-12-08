@@ -4,16 +4,15 @@ class TestController < ApplicationController
   end
 
   def create
-    windshield =  params[:session][:check_windshield]
+    cooling =  params[:session][:check_cooling]
     tire =  params[:session][:check_tire]
-    light =  params[:session][:check_light]
-    gas =  params[:session][:check_gas]
-    if windshield =="1" and tire =="1" and light=="1" and gas=="1"
+    engine =  params[:session][:check_engine]
+    current_vehicle_id = session[:current_vehicle_id] = params[:session][:vehicle_id]
+    if cooling =="1" and tire =="1" and engine=="1" and (current_vehicle_id != 'Enter a Vehicle ID' and current_vehicle_id != '')
         redirect_to current_user
     else
-        flash[:error] = 'Unsuccessful in checking in becuase not all the checkboxes were checked! Please Sign in and make sure that all the checkboxes have been checked!'
-        log_out if logged_in?
-        redirect_to root_url
+        flash[:error] = 'Unsuccessful in checking-in becuase not all the checkboxes were checked or vehicle id not entered!'
+        redirect_to checklist_path
     end 
   end
 
