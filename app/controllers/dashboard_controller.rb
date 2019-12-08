@@ -1,13 +1,14 @@
 class DashboardController < ApplicationController
   
   def post_stats
-    search_id = params[:vehicle_id]
-    if VehicleStatus.exists?(vehicle_id: search_id)
-      @vehicle = VehicleStatus.find_by(vehicle_id: search_id)
+    params.require(:dashboard).permit(:vehicle_id, :battery, :tire_pressure, :occupancy, :gps)
+    params.require(:dashboard).permit(gps: [:lat, :lon, :heading])
+    if VehicleStatus.exists?(vehicle_id: params[:dashboard][:vehicle_id])
+      @vehicle = VehicleStatus.find_by(vehicle_id: params[:dashboard][:vehicle_id])
       @vehicle.update_stats(params[:vehicle])
       render status: 200
     else
-      @vehicle = VehicleStatus.new(vehicle_status_params)
+      @vehicle = VehicleStatus.new
       @vehicle.update_stats(params[:vehicle])
       render status: 201
     end
@@ -36,10 +37,10 @@ class DashboardController < ApplicationController
     render json: @vehicle_stats
   end
   
-  private
+  # private
 
-    def vehicle_status_params
-      params.require(:dashboard).permit(:vehicle_id, :battery, :tire_pressure, :occupancy)
-      # params.require(:dashboard).permit(gps: [:lat, :lon, :heading])
-    end
+  #   def vehicle_status_params
+  #     params.require(:dashboard).permit(:vehicle_id, :battery, :tire_pressure, :occupancy)
+  #     # params.require(:dashboard).permit(gps: [:lat, :lon, :heading])
+  #   end
 end
