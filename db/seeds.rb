@@ -5,4 +5,3 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-VehicleStatus.create :vehicle_id => "17", :tire_pressure => "60Pa", :battery_level => "70%", :lidar_status => "Ok", :occupancy => "0"
