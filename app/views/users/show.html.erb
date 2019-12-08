@@ -292,22 +292,22 @@
     var lat = "30.617930";
     var long = "-96.337648";
     jQuery(document).ready(function(){
-      weatherWidget(document,'script','weatherwidget-io-js');
+      weatherWidget();
       weatherFunction();  // when the page has loaded, run weatherFunction
       update_values();
       // $('#weather_results').show();
     });
     
-    function weatherWidget(d, s, id){
-      var js,fjs=d.getElementsByTagName(s)[0];
-      if(!d.getElementById(id))
+    function weatherWidget(){
+      var js,fjs=document.getElementsByTagName('script')[0];
+      if(!document.getElementById('weatherwidget-io-js'))
       {
-        js=d.createElement(s);
-        js.id=id;
+        js=document.createElement('script');
+        js.id='weatherwidget-io-js';
         js.src='https://weatherwidget.io/js/widget.min.js';
         fjs.parentNode.insertBefore(js,fjs);
       }
-      setTimeout(weatherWidget.bind(null, document, 'script', 'weatherwidget-io-js'), 1000);
+      setTimeout(weatherWidget, 1000);
     };
   
   
