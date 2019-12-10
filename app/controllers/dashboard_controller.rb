@@ -26,6 +26,9 @@ class DashboardController < ApplicationController
         "tire_pressure" => vehicle.tire_pressure,
         "battery_level" => vehicle.battery_level,
         "occupancy" => vehicle.occupancy,
+        "latitude" => vehicle.latitude,
+        "longitude" => vehicle.longitude,
+        "heading" => vehicle.heading,
         "lidar_status" => ""
       }
     else
@@ -34,6 +37,9 @@ class DashboardController < ApplicationController
         "tire_pressure" => "Server is Down!",
         "battery_level" => "Server is Down!",
         "occupancy" => "Server is Down!",
+        "latitude" => "Server is Down!",
+        "longitude" => "Server is Down!",
+        "heading" => "Server is Down!",
         "lidar_status" => "Server is Down!"
       }
     end
